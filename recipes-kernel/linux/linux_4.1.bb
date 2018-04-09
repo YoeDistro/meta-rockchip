@@ -4,6 +4,8 @@
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
+DEPENDS += "lzop-native"
+
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-4.1.y \
 	file://defconfig"
 
