@@ -11,6 +11,7 @@ SRC_URI = "git://chromium.googlesource.com/chromiumos/third_party/kernel;protoco
 	file://0002-mwifiex-do-not-create-AP-and-P2P-interfaces-upon-dri.patch \
 	file://0003-UPSTREAM-soc-rockchip-add-handler-for-usb-uart-funct.patch \
 	file://0004-fix-brcmfmac-oops-and-race-condition.patch \
+	file://0001-add-support-for-gcc6.patch \
 	file://defconfig"
 SRCREV = "6fa09265d61db1c29203c8194badebcfee86d97f"
 
