@@ -24,7 +24,7 @@ LINUX_VERSION_EXTENSION = ""
 PR = "r1"
 PV = "${LINUX_VERSION}"
 
-COMPATIBLE_MACHINE = "(rk3288-veyron-speedy)"
+COMPATIBLE_MACHINE = "(veyron-speedy)"
 # The chromeos kernel uses the wifi subsystem v3.8
 export WIFIVERSION="-3.8"
 
