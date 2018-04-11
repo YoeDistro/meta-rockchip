@@ -14,8 +14,6 @@ XSERVER = "xserver-xorg \
            xf86-input-mouse \
            xf86-input-keyboard"
 
-PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip-3.0"
-
 KERNEL_IMAGETYPE = "zImage"
 
 IMAGE_FSTYPES += "ext4"
