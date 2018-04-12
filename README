@@ -1,6 +1,5 @@
-This README file contains information on building the meta-rockchip
-BSP layer, and booting images.
-Please see the corresponding sections below for details.
+This README file contains information on building with the meta-rockchip BSP
+layer.
 
 Dependencies
 ============
@@ -39,13 +38,6 @@ available here:
 Please also send your patches by using git send-email and prefix your subject
 by "[meta-rockchip]".
 
-Table of Contents
-=================
-
-  I. Configure yocto/oe environment
- II. Building a second level bootloader based on kexec
-III. Booting your device
-
 I. Configure yocto/oe environment
 =================================
 
@@ -80,44 +72,3 @@ You should then be able to build a image as such:
 At the end of a successful build, you should have an image in
 
 	tmp-glibc/deploy/images/<MACHINE>/<IMAGE_NAME>
-
-II. Building a second level bootloader based on kexec
-=====================================================
-
-This BSP contains "Petitboot", a kexec-based second leval bootloader.
-As all available bootloaders provided by Rockchip are very limited and do not allow
-to boot from a block device containing a file system or from the network, we decided
-to use Petitboot, which just needs a minimalistic kernel to work.
-
-See https://www.kernel.org/pub/linux/kernel/people/geoff/petitboot/petitboot.html
-
-In a terminal, just type the following command:
-~/yocto $ bitbake linux-petitboot
-
-At the end of a successful build, you should have an image
-/path/to/yocto/build/tmp/deploy/<MACHINE>/RK3XPetitbootLoader-<MACHINE>.bin.
-This image is already to the right format, so you can directly flash it as a
-kernel image to a Rockchip device with upgrade_tool.
-
-III. Booting your device
-========================
-
-Petitboot allows you to boot a kernel from the EMMC, an SDCARD, an USB storage
-device or even tthe network (it just needs to be supported by the Linux kernel).
-In order to do so, you need to put a configuration file at the root of the target
-device. Petitboot supports differents kind of configuration files, in this example
-we will an SDCARD and a kboot configuration file.
-
-Copy your kernel image and your dtb under the /boot directory, on your device.
-Then create a kboot.conf in / and add the following content:
-
-linux-next from sdcard='/boot/zImage dtb=/boot/<MACHINE>.dtb root=/dev/mmcblk0p2 rootwait console=ttyS2,115200 earlyprintk'
-linux-next from tftp='tftp://192.168.0.5/zImage dtb=tftp://192.168.0.5/<MACHINE>.dtb root=/dev/mmcblk0p2 rootwait console=ttyS2,115200 earlyprintk'
-# You can also use nfs
-# nfs='nfs://192.168.0.5/fire/boot/vmlinux.strip root=/dev/nfs rw ip=dhcp video=1080p fbcon=rotate:3'
-# Or http and nfs mixed together
-# http_nfs='http://192.168.0.5/ice/boot/vmlinux.strip nfs://192.168.0.5/ice/boot/initrd root=/dev/nfs'
-
-Then, plug your SDCARD into your Rockchip device and power on the board. If
-everything worked fine, Petitboot should be started automatically and list all 
-entries found in the configuration file.
