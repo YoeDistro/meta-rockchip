@@ -2,7 +2,6 @@ This README file contains information on building the meta-rockchip
 BSP layer, and booting images.
 Please see the corresponding sections below for details.
 
-
 Dependencies
 ============
 
@@ -19,26 +18,23 @@ This layer depends on:
 	branch: <the same release used for meta-rockchip>
   }
 
-  OR
-
-  URI: git://git.yoctoproject.org/poky
-  branch: <the same release used for meta-rockchip>
-
 
 Contributing
 ============
 
-Please submit any patches against this BSP to the maintainers of this layer. The
-mail must be sent *to the* following people (as "To:" in the header):
+Please submit any patches against this BSP to the maintainers of this layer.
+The mail must be sent *to the* following people (as "To:" in the header):
 
-Maintainer: Romain Perier <romain.perier@collabora.com>
-Maintainer: Trevor Woerner <twoerner@gmail.com>
+	Maintainer: Romain Perier <romain.perier@collabora.com>
+	Maintainer: Trevor Woerner <twoerner@gmail.com>
 
 Please also include the Yocto Project mailing list "yocto@yoctoproject.org",
 as Cc. (As "Cc:" in the header).
 
 When sending patches please take a look at the contribution guide
-available here: https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
+available here:
+
+	https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
 
 Please also send your patches by using git send-email and prefix your subject
 by "[meta-rockchip]".
@@ -51,40 +47,39 @@ Table of Contents
 III. Booting your device
 
 I. Configure yocto/oe environment
-========================================
+=================================
 
 In order to build an image with BSP support for a given release, you
 need to download the corresponding tools described in the "Dependencies"
 section. Be sure that everything is in the same directory.
 
-~ $ mkdir yocto; cd yocto
-~/yocto $ git clone git://git.yoctoproject.org/poky -b fido
-~/yocto $ git clone git://git.yoctoproject.org/meta-rockchip
+	$ mkdir yocto; cd yocto
+	~/yocto $ git clone git://git.openembedded.org/bitbake
+	~/yocto $ git clone git://git.openembedded.org/openembedded-core
+	~/yocto $ git clone git://git.yoctoproject.org/meta-rockchip
 
 Then you need to source the configuration script:
-~/yocto $ source poky/oe-init-build-env
 
-Having done that, you can build a
-image for a rockchip board by adding the location of the meta-rockchip
-layer to bblayers.conf, along with any other layers needed (to access
-common metadata shared between BSPs) e.g.:
+	~/yocto $ source openembedded-core/oe-init-build-env build bitbake
 
-  /path/to/yocto/poky/meta     \
-  /path/to/yocto/meta-rockchip \
+Having done that, you can build an image for a rockchip board by adding the
+location of the meta-rockchip layer to bblayers.conf, along with any other
+layers needed (to access common metadata shared between BSPs)
 
-To enable the build for a specific board, add its name in the MACHINE variable to local.conf:
+To enable the build for a specific board, add its name in the MACHINE variable
+to local.conf:
 
-  MACHINE ?= "radxarock"
+	MACHINE ?= "radxarock"
 
 All supported machines can be found in meta-rockchip/conf/machine.
 
 You should then be able to build a image as such:
 
-  $ bitbake core-image-minimal
+	~/yocto/build $ bitbake core-image-minimal
 
 At the end of a successful build, you should have an image in
-/path/to/yocto/build/tmp/deploy/<MACHINE>/<IMAGE_NAME>. See Yocto
-manual for more details.
+
+	tmp-glibc/deploy/images/<MACHINE>/<IMAGE_NAME>
 
 II. Building a second level bootloader based on kexec
 =====================================================
