@@ -7,7 +7,7 @@ SECTION = "admin"
 LICENSE = "Chromium"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=562c740877935f40b262db8af30bca36"
 
-DEPENDS = "openssl util-linux-native libyaml-native"
+DEPENDS = "openssl-native util-linux-native libyaml-native"
 TAG = "43-6946"
 SRC_URI = "git://chromium.googlesource.com/chromiumos/platform/vboot_reference;protocol=http;branch=release-R${TAG}.B \
            file://0001-host_misc-Fix-uninitialized-variable-val-in-function.patch \
