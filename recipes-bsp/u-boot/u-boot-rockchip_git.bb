@@ -7,7 +7,7 @@ require recipes-bsp/u-boot/u-boot.inc
 require recipes-bsp/u-boot/u-boot-common_2018.01.inc
 
 DESCRIPTION = "Rockchip next-dev U-Boot"
-COMPATIBLE_MACHINE = "(firefly-rk3288|rock2-square)"
+COMPATIBLE_MACHINE = "(firefly-rk3288|rock2-square|veyron-speedy)"
 
 DEPENDS = "dtc-native bc-native"
 
