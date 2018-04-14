@@ -6,7 +6,7 @@ require recipes-kernel/linux/linux-yocto.inc
 
 # As this package is really well integrated into archlinuxarm and applies interesting fixes,
 # I synced my work with it. See https://github.com/archlinuxarm/PKGBUILDs/tree/master/core/linux-veyron
-SRC_URI = "git://chromium.googlesource.com/chromiumos/third_party/kernel;protocol=http;nobranch=1 \
+SRC_URI = "git://chromium.googlesource.com/chromiumos/third_party/kernel;protocol=https;nobranch=1 \
         file://0001-use-chromiumos-mwifiex-drivers.patch \
 	file://0002-mwifiex-do-not-create-AP-and-P2P-interfaces-upon-dri.patch \
 	file://0003-UPSTREAM-soc-rockchip-add-handler-for-usb-uart-funct.patch \
