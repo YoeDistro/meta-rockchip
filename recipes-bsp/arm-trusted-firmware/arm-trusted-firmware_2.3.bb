@@ -14,9 +14,8 @@ PROVIDES = "virtual/atf"
 
 BRANCH = "master"
 SRC_URI = "git://git.trustedfirmware.org/TF-A/trusted-firmware-a.git;protocol=http;branch=${BRANCH} \
-           file://0001-rockchip-Prevent-macro-expansion-in-paths.patch \
            "
-SRCREV = "a04808c16cfc126d9fe572ae7c4b5a3d39de5796"
+SRCREV = "8ff55a9e14a23d7c7f89f52465bcc6307850aa33"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
