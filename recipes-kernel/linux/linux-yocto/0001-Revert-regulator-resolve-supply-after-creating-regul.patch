@@ -1,0 +1,53 @@
+From a414d39b848002e15531f2538d2b6427ce51d07d Mon Sep 17 00:00:00 2001
+From: Joshua Watt <JPEWhacker@gmail.com>
+Date: Thu, 10 Dec 2020 15:59:47 -0600
+Subject: [PATCH] Revert "regulator: resolve supply after creating regulator"
+
+This commit prevents the serial console from working on the Rock Pi 4
+for some reason. It *appears* to possibly be fixed by some other commit
+upstream, but after a lot of head scratching and bisecting, I was unable
+to find which one, so just revert it for now and we can deal with it
+later.
+
+This reverts commit 96c6b5d5775637b3095ef934f871044811fd4db7.
+
+---
+ drivers/regulator/core.c | 21 ++++++++-------------
+ 1 file changed, 8 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/regulator/core.c b/drivers/regulator/core.c
+index 25e601bf9383..be8c709a7488 100644
+--- a/drivers/regulator/core.c
++++ b/drivers/regulator/core.c
+@@ -5187,20 +5187,15 @@ regulator_register(const struct regulator_desc *regulator_desc,
+ 	else if (regulator_desc->supply_name)
+ 		rdev->supply_name = regulator_desc->supply_name;
+ 
++	/*
++	 * Attempt to resolve the regulator supply, if specified,
++	 * but don't return an error if we fail because we will try
++	 * to resolve it again later as more regulators are added.
++	 */
++	if (regulator_resolve_supply(rdev))
++		rdev_dbg(rdev, "unable to resolve supply\n");
++
+ 	ret = set_machine_constraints(rdev, constraints);
+-	if (ret == -EPROBE_DEFER) {
+-		/* Regulator might be in bypass mode and so needs its supply
+-		 * to set the constraints */
+-		/* FIXME: this currently triggers a chicken-and-egg problem
+-		 * when creating -SUPPLY symlink in sysfs to a regulator
+-		 * that is just being created */
+-		ret = regulator_resolve_supply(rdev);
+-		if (!ret)
+-			ret = set_machine_constraints(rdev, constraints);
+-		else
+-			rdev_dbg(rdev, "unable to resolve supply early: %pe\n",
+-				 ERR_PTR(ret));
+-	}
+ 	if (ret < 0)
+ 		goto wash;
+ 
+-- 
+2.29.2
+
