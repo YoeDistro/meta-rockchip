@@ -7,6 +7,7 @@ WKS_FILE = "rockchip.wks"
 WKS_FILE_DEPENDS ?= " \
 	mtools-native \
 	dosfstools-native \
+	e2fsprogs-native \
 	virtual/bootloader \
 	virtual/kernel \
 	"
