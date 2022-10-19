@@ -4,6 +4,7 @@ DEPENDS:append:rk3399 = " virtual/arm-none-eabi-gcc-native"
 
 COMPATIBLE_MACHINE:append:rk3399 = "|rk3399"
 COMPATIBLE_MACHINE:append:rk3328 = "|rk3328"
+COMPATIBLE_MACHINE:append:px30 = "|px30"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 SRC_URI += "\
@@ -24,6 +25,10 @@ fixup_baudrate() {
 
 fixup_baudrate:rk3399() {
 	sed -i "s/#define RK3399_BAUDRATE\s\+.*/#define RK3399_BAUDRATE ${RK_CONSOLE_BAUD}/" ${S}/plat/rockchip/rk3399/rk3399_def.h
+}
+
+fixup_baudrate:px30() {
+	sed -i "s/#define PX30_BAUDRATE\s\+.*/#define PX30_BAUDRATE ${RK_CONSOLE_BAUD}/" ${S}/plat/rockchip/px30/px30_def.h
 }
 
 do_patch[postfuncs] += "fixup_baudrate"
