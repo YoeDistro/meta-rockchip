@@ -27,6 +27,3 @@ WICVARS:append = " \
 	SPL_BINARY \
 	UBOOT_SUFFIX \
 	"
-
-# Do not update fstab file while creating wic images
-WIC_CREATE_EXTRA_ARGS ?= "--no-fstab-update"
