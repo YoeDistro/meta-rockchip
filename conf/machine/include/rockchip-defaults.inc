@@ -15,7 +15,6 @@ XSERVER = " \
 	xf86-video-modesetting \
 	xf86-input-evdev \
 	xf86-input-mouse \
-	xf86-input-keyboard \
 	"
 
 # misc
