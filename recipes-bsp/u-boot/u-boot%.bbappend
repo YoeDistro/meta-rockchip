@@ -5,6 +5,8 @@ do_compile:append:rock2-square () {
 	fi
 }
 
+DEPENDS:append:rock-pi-4 = " gnutls-native"
+
 ATF_DEPENDS ??= ""
 
 EXTRA_OEMAKE:append:rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
