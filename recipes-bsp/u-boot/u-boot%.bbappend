@@ -6,6 +6,8 @@ do_compile:append:rock2-square () {
 }
 
 DEPENDS:append:rock-pi-4 = " gnutls-native"
+# various machines require the pyelftools library for parsing dtb files
+DEPENDS:append = " python3-pyelftools-native"
 
 ATF_DEPENDS ??= ""
 
