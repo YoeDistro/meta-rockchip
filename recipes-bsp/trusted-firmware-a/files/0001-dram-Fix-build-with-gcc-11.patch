@@ -11,6 +11,7 @@ plat/rockchip/rk3399/drivers/dram/dram_spec_timing.c:781:11: error: explicitly a
                 twr_tmp = twr_tmp;
                 ~~~~~~~ ^ ~~~~~~~
 
+Upstream-Status: Pending
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
  plat/rockchip/rk3399/drivers/dram/dram_spec_timing.c | 2 +-
