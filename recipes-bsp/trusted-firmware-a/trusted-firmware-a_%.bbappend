@@ -1,6 +1,6 @@
 # Rockchip RK3399 compiles some M0 firmware which requires an arm-none-eabi GCC
 # toolchain
-DEPENDS:append:rk3399 = " virtual/arm-none-eabi-gcc-native"
+DEPENDS:append:rk3399 = " gcc-arm-none-eabi-native"
 
 COMPATIBLE_MACHINE:append:rk3399 = "|rk3399"
 COMPATIBLE_MACHINE:append:rk3328 = "|rk3328"
