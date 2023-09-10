@@ -1,3 +1,5 @@
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+
 COMPATIBLE_MACHINE:marsboard-rk3066 = "marsboard-rk3066"
 COMPATIBLE_MACHINE:rock2-square = "rock2-square"
 COMPATIBLE_MACHINE:radxarock = "radxarock"
@@ -11,4 +13,4 @@ COMPATIBLE_MACHINE:nanopi-m4-2gb = "nanopi-m4-2gb"
 COMPATIBLE_MACHINE:rock64 = "rock64"
 COMPATIBLE_MACHINE:rock-pi-e = "rock-pi-e"
 
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+SRC_URI:append = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
