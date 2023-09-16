@@ -29,6 +29,7 @@ Status of supported boards:
 		tinker-board-s
 		vyasa-rk3288
 		firefly-rk3288
+		nanopi-r4s
 	builds:
 		marsboard-rk3066
 		radxarock

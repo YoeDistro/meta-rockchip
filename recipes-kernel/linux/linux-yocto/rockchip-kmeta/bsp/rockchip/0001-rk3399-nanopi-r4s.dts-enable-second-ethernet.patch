@@ -1,0 +1,41 @@
+From 4c867907b68b417da0711cabdde30a969e368596 Mon Sep 17 00:00:00 2001
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Sun, 17 Sep 2023 17:30:43 -0400
+Subject: [PATCH] rk3399-nanopi-r4s.dts: enable second ethernet
+
+# lspci
+00:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3399 PCI Express Root Port
+01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ether)
+
+Link: https://github.com/armbian/build/pull/2415
+Upstream-Status: Submitted [by someone else]
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+index fe5b52610010..771615722358 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+@@ -76,6 +76,17 @@ &pcie0 {
+ 	max-link-speed = <1>;
+ 	num-lanes = <1>;
+ 	vpcie3v3-supply = <&vcc3v3_sys>;
++
++	pcie@0 {
++		reg = <0x00000000 0 0 0 0>;
++		#address-cells = <3>;
++		#size-cells = <2>;
++
++		r8169: pcie@0,0 {
++			reg = <0x000000 0 0 0 0>;
++			local-mac-address = [ 00 00 00 00 00 00 ];
++		};
++	};
+ };
+ 
+ &pinctrl {
+-- 
+2.41.0.327.gaa9166bcc0ba
+

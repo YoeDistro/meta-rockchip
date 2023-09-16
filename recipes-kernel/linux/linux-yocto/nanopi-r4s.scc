@@ -1,0 +1,6 @@
+define KFEATURE_DESCRIPTION "tweaks for the nanopi-r4s"
+define KMACHINE nanopi-r4s
+define KTYPE standard
+define KARCH arm64
+
+include bsp/rockchip/0001-rk3399-nanopi-r4s.dts-enable-second-ethernet.patch
