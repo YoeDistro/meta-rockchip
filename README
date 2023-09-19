@@ -30,6 +30,7 @@ Status of supported boards:
 		vyasa-rk3288
 		firefly-rk3288
 		nanopi-r4s
+		rock-5b
 	builds:
 		marsboard-rk3066
 		radxarock
