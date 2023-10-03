@@ -1,10 +1,3 @@
-do_compile:append:rock2-square () {
-	# copy to default search path
-	if [ "${SPL_BINARY}" = "u-boot-spl-dtb.bin" ]; then
-		cp ${B}/spl/${SPL_BINARY} ${B}
-	fi
-}
-
 DEPENDS:append:rock-pi-4 = " gnutls-native"
 # various machines require the pyelftools library for parsing dtb files
 DEPENDS:append = " python3-pyelftools-native"
@@ -25,3 +18,10 @@ EXTRA_OEMAKE:append:px30 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-px30.elf"
 INIT_FIRMWARE_DEPENDS:px30 = " trusted-firmware-a:do_deploy"
 
 do_compile[depends] .= "${INIT_FIRMWARE_DEPENDS}"
+
+do_compile:append:rock2-square () {
+	# copy to default search path
+	if [ "${SPL_BINARY}" = "u-boot-spl-dtb.bin" ]; then
+		cp ${B}/spl/${SPL_BINARY} ${B}
+	fi
+}
