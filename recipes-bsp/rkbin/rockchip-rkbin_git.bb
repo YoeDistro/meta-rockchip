@@ -12,7 +12,7 @@ inherit bin_package deploy
 
 S = "${WORKDIR}/git"
 
-COMPATIBLE_MACHINE = ""
+COMPATIBLE_MACHINE = "^$"
 COMPATIBLE_MACHINE:rk3588s = "rk3588s"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
