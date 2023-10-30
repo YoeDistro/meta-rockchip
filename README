@@ -33,10 +33,32 @@ Status of supported boards:
 		rock-5b
 		nanopi-r2s
 		nanopi-m4b
+		rock-pi-s
 	builds:
 		marsboard-rk3066
 		radxarock
 		rock2-square
+
+Notes:
+-----
+	The latest ddr initializer for the rk3308 platform (currently only
+	used by the rock-pi-s machine) does not output diagnostic messages
+	to uart0. This causes a bunch of gibberish to be printed to the
+	console window which only becomes legible once the linux kernel
+	starts. I.e. the console output of the ddr initialization routine,
+	as well as u-boot is lost. An older version of this same binary
+	blob does, however, support output to uart0 (making its diagnostic
+	messages as well as u-boot available on the console). By default
+	the build assumes the user would like to see these message and be
+	able to have the option to interact with u-boot. Iow: for the
+	rock-pi-s an older version of rkbin is used.
+
+	If, however, the user would prefer to use the latest binary ddr
+	initializer from rkbin, simply set:
+
+		RKBIN_RK3308_LATEST = "1"
+	
+	in the configuration (e.g. conf/local.conf).
 
 Maintenance:
 -----------

@@ -1,9 +1,9 @@
 DESCRIPTION = "Rockchip Firmware and Tool Binaries"
-LICENSE = "Proprietary"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=15faa4a01e7eb0f5d33f9f2bcc7bff62"
+LICENSE = "CLOSED"
+LIC_FILES_CHKSUM:rk3308 = "file://README;md5=39cc9df955478b8df26158d489fdcc95"
 
 SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
-SRCREV = "b4558da0860ca48bf1a571dd33ccba580b9abe23"
+SRCREV = "e65b97b511f1349156702db40694454c141d8fe2"
 
 PROVIDES += "trusted-firmware-a"
 PROVIDES += "optee-os"
@@ -14,7 +14,6 @@ S = "${WORKDIR}/git"
 
 COMPATIBLE_MACHINE = "^$"
 COMPATIBLE_MACHINE:rk3308 = "rk3308"
-COMPATIBLE_MACHINE:rk3588s = "rk3588s"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
@@ -32,16 +31,7 @@ do_deploy:rk3308() {
 	# Prebuilt OPTEE-OS
 	install -m 644 ${S}/bin/rk33/rk3308_bl32_v*.bin ${DEPLOYDIR}/tee-rk3308.bin
 	# Prebuilt U-Boot TPL (DDR init)
-	install -m 644 ${S}/bin/rk33/rk3308_ddr_589MHz_uart?_m0_v*.bin ${DEPLOYDIR}/ddr-rk3308.bin
-}
-
-do_deploy:rk3588s() {
-	# Prebuilt TF-A
-	install -m 644 ${S}/bin/rk35/rk3588_bl31_v*.elf ${DEPLOYDIR}/bl31-rk3588.elf
-	# Prebuilt OPTEE-OS
-	install -m 644 ${S}/bin/rk35/rk3588_bl32_v*.bin ${DEPLOYDIR}/tee-rk3588.bin
-	# Prebuilt U-Boot TPL (DDR init)
-	install -m 644 ${S}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v*.bin ${DEPLOYDIR}/ddr-rk3588.bin
+	install -m 644 ${S}/bin/rk33/rk3308_ddr_589MHz_uart0_m0_v*.bin ${DEPLOYDIR}/ddr-rk3308.bin
 }
 
 do_deploy() {
