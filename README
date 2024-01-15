@@ -35,6 +35,7 @@ Status of supported boards:
 		nanopi-m4b
 		rock-pi-s
 		rock-5a
+		roc-rk3328-cc
 	builds:
 		marsboard-rk3066
 		radxarock
