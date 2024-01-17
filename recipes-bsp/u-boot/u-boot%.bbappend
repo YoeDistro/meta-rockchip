@@ -4,7 +4,10 @@ DEPENDS:append:rock-pi-s = " u-boot-tools-native"
 DEPENDS:append:rock-pi-4 = " gnutls-native"
 
 EXTRA_OEMAKE:append:px30 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-px30.elf"
-EXTRA_OEMAKE:append:rk3308 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3308.elf"
+EXTRA_OEMAKE:append:rk3308 = " \
+	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3308.elf \
+	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3308.bin \
+	"
 EXTRA_OEMAKE:append:rk3328 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3328.elf"
 EXTRA_OEMAKE:append:rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
 EXTRA_OEMAKE:append:rk3588s = " \
@@ -25,9 +28,4 @@ do_compile:append:rock2-square () {
 	if [ "${SPL_BINARY}" = "u-boot-spl-dtb.bin" ]; then
 		cp ${B}/spl/${SPL_BINARY} ${B}
 	fi
-}
-
-do_compile:append:rk3308() {
-	mkimage -n rk3308 -T rksd -d ${DEPLOY_DIR_IMAGE}/ddr-rk3308.bin ${B}/idbloader.img
-	cat ${B}/spl/u-boot-spl.bin >> ${B}/idbloader.img
 }
