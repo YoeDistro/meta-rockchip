@@ -1,0 +1,83 @@
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Kever Yang <kever.yang@rock-chips.com>, Ramon Fried
+ <rfried.dev@gmail.com>, Joe Hershberger <joe.hershberger@ni.com>, Simon
+ Glass <sjg@chromium.org>, Banglang Huang <banglang.huang@foxmail.com>
+Cc: Trevor Woerner <twoerner@gmail.com>, u-boot@lists.denx.de, Jonas
+ Karlman <jonas@kwiboo.se>
+Subject: [PATCH 1/2] net: designware: Reset eth phy before phy connect
+Date: Thu, 18 Jan 2024 07:19:45 +0000
+Message-ID: <20240118071949.927089-2-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240118071949.927089-1-jonas@kwiboo.se>
+References: <20240118071949.927089-1-jonas@kwiboo.se>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 65a8d11ed66eecd94fbb691a
+
+Some ethernet PHY require being reset before a phy-id can be read back
+on the MDIO bus. This can result in the following message being show
+on e.g. a Radxa ROCK Pi E v1.21 with a RTL8211F ethernet PHY.
+
+  Could not get PHY for ethernet@ff540000: addr -1
+
+Add support to designware ethernet driver to reset eth phy by calling
+the eth phy uclass function eth_phy_set_mdio_bus(). The call use NULL
+as bus parameter to not set a shared mdio bus reference that would be
+freed when probe fails. Also add a eth_phy_get_addr() call to try and
+get the phy addr from DT when DM_MDIO is disabled.
+
+This help fix ethernet on Radxa ROCK Pi E v1.21:
+
+  => mdio list
+  ethernet@ff540000:
+  1 - RealTek RTL8211F <--> ethernet@ff540000
+
+Upstream-Status: Submitted
+Reported-by: Trevor Woerner <twoerner@gmail.com>
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+---
+ drivers/net/designware.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/drivers/net/designware.c b/drivers/net/designware.c
+index a174344b3ef5..9aa5d8a1409e 100644
+--- a/drivers/net/designware.c
++++ b/drivers/net/designware.c
+@@ -13,6 +13,7 @@
+ #include <cpu_func.h>
+ #include <dm.h>
+ #include <errno.h>
++#include <eth_phy.h>
+ #include <log.h>
+ #include <miiphy.h>
+ #include <malloc.h>
+@@ -576,6 +577,9 @@ static int dw_phy_init(struct dw_eth_dev *priv, void *dev)
+ 	struct phy_device *phydev;
+ 	int ret;
+ 
++	if (IS_ENABLED(CONFIG_DM_ETH_PHY))
++		eth_phy_set_mdio_bus(dev, NULL);
++
+ #if IS_ENABLED(CONFIG_DM_MDIO)
+ 	phydev = dm_eth_phy_connect(dev);
+ 	if (!phydev)
+@@ -583,6 +587,9 @@ static int dw_phy_init(struct dw_eth_dev *priv, void *dev)
+ #else
+ 	int phy_addr = -1;
+ 
++	if (IS_ENABLED(CONFIG_DM_ETH_PHY))
++		phy_addr = eth_phy_get_addr(dev);
++
+ #ifdef CONFIG_PHY_ADDR
+ 	phy_addr = CONFIG_PHY_ADDR;
+ #endif
+-- 
+2.43.0
+
+
