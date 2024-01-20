@@ -38,6 +38,7 @@ Status of supported boards:
 		roc-rk3328-cc
 		roc-rk3308-cc
 		orangepi-5-plus
+		rock-3a
 	builds:
 		marsboard-rk3066
 		radxarock
