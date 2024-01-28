@@ -3,7 +3,7 @@
 SPL_BINARY ?= "idbloader.img"
 
 IMAGE_FSTYPES += "wic wic.bmap"
-WKS_FILE = "rockchip.wks"
+WKS_FILE ?= "rockchip.wks"
 WKS_FILE_DEPENDS ?= " \
 	mtools-native \
 	dosfstools-native \
