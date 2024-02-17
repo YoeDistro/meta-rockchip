@@ -16,12 +16,12 @@
 #   boot        32768           229376
 #   root        262144          -           (suggested)
 
-part loader1    --offset 64s    --fixed-size 4000K            --source rawcopy                                                 --sourceparams="file=${SPL_BINARY}"
-part reserved1  --offset 8064s  --fixed-size 64K
-part reserved2  --offset 8192s  --fixed-size 4096K
-part loader2    --offset 16384s --fixed-size 4096K            --source rawcopy                                                 --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
-part atf        --offset 24576s --fixed-size 4096K
-part /boot      --offset 32768s --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid --sourceparams="loader=u-boot"
-part /                                                        --source rootfs            --fstype=ext4 --label root --use-uuid
+part loader1    --offset 64s    --fixed-size 4000K   --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+part reserved1  --offset 8064s  --fixed-size 64K     --fstype=none
+part reserved2  --offset 8192s  --fixed-size 4096K   --fstype=none
+part loader2    --offset 16384s --fixed-size 4096K   --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
+part atf        --offset 24576s --fixed-size 4096K   --fstype=none
+part /boot      --offset 32768s --size       114688K --fstype=vfat --active   --source bootimg-partition --label boot --use-uuid --sourceparams="loader=u-boot"
+part /                                               --fstype=ext4            --source rootfs            --label root --use-uuid
 
 bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=ext4 init=/sbin/init"
