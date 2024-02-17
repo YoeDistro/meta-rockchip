@@ -8,16 +8,22 @@
 # See: https://opensource.rock-chips.com/wiki_Partitions
 #
 #   Partition   Start Sector    Number of Sectors
-#   loader1     64              8000        (idbloader / U-Boot SPL)
-#   reserved1   8064            128
-#   reserved2   8192            8192
+#   loader1     64              7104        (idbloader / U-Boot SPL)
+#   v_storage   7168            512         (vendor storage: e.g. serial number, MAC address, etc)
+#   reserved    7680            384         (not used)
+#   reserved1   8064            64          (legacy DRM key)
+#   uboot_env   8128            64          (U-Boo environment)
+#   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
 #   loader2     16384           8192        (U-Boot proper)
-#   atf         24576           8192
+#   atf         24576           8192        (trusted OS e.g. ATF, OP-TEE, etc)
 #   boot        32768           229376
 #   root        262144          -           (suggested)
 
-part loader1    --offset 64s    --fixed-size 4000K   --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
-part reserved1  --offset 8064s  --fixed-size 64K     --fstype=none
+part loader1    --offset 64s    --fixed-size 3552K   --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+part v_storage  --offset 7168s  --fixed-size 256K    --fstype=none
+part reserved   --offset 7680s  --fixed-size 192K    --fstype=none
+part reserved1  --offset 8064s  --fixed-size 32K     --fstype=none
+part uboot_env  --offset 8128s  --fixed-size 32K     --fstype=none
 part reserved2  --offset 8192s  --fixed-size 4096K   --fstype=none
 part loader2    --offset 16384s --fixed-size 4096K   --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
 part atf        --offset 24576s --fixed-size 4096K   --fstype=none
