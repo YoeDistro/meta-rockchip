@@ -16,18 +16,16 @@
 #   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
 #   loader2     16384           8192        (U-Boot proper)
 #   atf         24576           8192        (trusted OS e.g. ATF, OP-TEE, etc)
-#   boot        32768           229376
-#   root        262144          -           (suggested)
+#   root        32768           -
 
-part loader1    --offset 64s    --fixed-size 3552K   --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+part loader1    --offset 64s    --fixed-size 3552K   --fstype=none            --source rawcopy              --sourceparams="file=${SPL_BINARY}"
 part v_storage  --offset 7168s  --fixed-size 256K    --fstype=none
 part reserved   --offset 7680s  --fixed-size 192K    --fstype=none
 part reserved1  --offset 8064s  --fixed-size 32K     --fstype=none
 part uboot_env  --offset 8128s  --fixed-size 32K     --fstype=none
 part reserved2  --offset 8192s  --fixed-size 4096K   --fstype=none
-part loader2    --offset 16384s --fixed-size 4096K   --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
+part loader2    --offset 16384s --fixed-size 4096K   --fstype=none            --source rawcopy              --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
 part atf        --offset 24576s --fixed-size 4096K   --fstype=none
-part /boot      --offset 32768s --size       114688K --fstype=vfat --active   --source bootimg-partition --label boot --use-uuid --sourceparams="loader=u-boot"
-part /                                               --fstype=ext4            --source rootfs            --label root --use-uuid
+part /                                               --fstype=ext4 --active   --source rootfs  --label root
 
-bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=ext4 init=/sbin/init"
+bootloader --ptable gpt
