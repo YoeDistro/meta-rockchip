@@ -12,7 +12,7 @@
 #   v_storage   7168            512         (vendor storage: e.g. serial number, MAC address, etc)
 #   reserved    7680            384         (not used)
 #   reserved1   8064            64          (legacy DRM key)
-#   uboot_env   8128            64          (U-Boo environment)
+#   uboot_env   8128            64          (U-Boot environment)
 #   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
 #   loader2     16384           8192        (U-Boot proper)
 #   atf         24576           8192        (trusted OS e.g. ATF, OP-TEE, etc)
