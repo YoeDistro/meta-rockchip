@@ -70,7 +70,8 @@ Notes:
 Maintenance:
 -----------
 	Please send pull requests, patches, comments, or questions to the
-	yocto mailing list (yocto@lists.yoctoproject.org) CCing the maintainer
+	yocto-patches mailing list (yocto-patches@lists.yoctoproject.org)
+	CCing the maintainer
 
 	When sending patches, please make sure the email subject line includes
 	"[meta-rockchip][PATCH]" and follow the community's patch submission
@@ -78,13 +79,10 @@ Maintenance:
 		https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
 		https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
 
-	Please send changes to the yocto mailing list with [meta-rockchip] in the subject line,
-	cc'ing the maintainer.
-
 	This can be configured within the repository with the following commands:
 
-		git config sendemail.to yocto@lists.yoctoproject.org
-		git config sendemail.cc twoerner@gmail.com
+		git config sendemail.to yocto-patches@lists.yoctoproject.org
+		git config sendemail.cc <your full email address>
 		git config format.subjectprefix "meta-rockchip] [PATCH"
 
 	Then, to send your most recent commit (i.e. just one patch),
