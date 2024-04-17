@@ -1,9 +1,3 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI:append:rock-pi-e = " \
-	file://PATCH_1-2_net_designware_Reset_eth_phy_before_phy_connect.patch \
-	file://PATCH_2-2_rockchip_rk3328-rock-pi-e_Enable_DM_ETH_PHY_and_PHY_REALTEK.patch \
-	"
-
 # various machines require the pyelftools library for parsing dtb files
 DEPENDS:append = " python3-pyelftools-native"
 DEPENDS:append:rk3308 = " u-boot-tools-native"
