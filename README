@@ -67,6 +67,26 @@ Notes:
 	
 	in the configuration (e.g. conf/local.conf).
 
+U-Boot Environment:
+------------------
+	In order to configure U-Boot to be able to store its environment into the
+	device from which it was booted, for any device supported in this BSP,
+	simply add the following to MACHINE_FEATURES:
+
+		rk-u-boot-env
+
+	If enabled, to additionally have the U-Boot environment generated and
+	stored in the image, also enable the following variable (default: off):
+
+		RK_IMAGE_INCLUDES_UBOOT_ENV
+
+	The script:
+
+		scripts/dump-uboot-env-from-yocto-image.sh
+
+	can be used on a rockchip wic image to see the contents of the U-Boot
+	environment partition at build time.
+
 Maintenance:
 -----------
 	Please send pull requests, patches, comments, or questions to the
