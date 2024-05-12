@@ -19,6 +19,7 @@ RK_UBOOT_ENV:rk-u-boot-env = "${@ '--source rawcopy --sourceparams=file=u-boot.e
 
 WICVARS:append = " \
 	RK_UBOOT_ENV \
+	ROOT_DPS \
 	SPL_BINARY \
 	UBOOT_SUFFIX \
 	"
