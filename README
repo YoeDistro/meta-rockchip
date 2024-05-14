@@ -85,6 +85,24 @@ Notes:
 
 	in the configuration (e.g. conf/local.conf).
 
+  A/B updates with RAUC
+	This layer now contains one example of building an A/B update using RAUC.
+	Users are free to use/test this example, to optionally enable it, to build
+	their own update strategies based on this one, or to ignore it completely.
+	This example only works with
+
+		INIT_MANAGER = "systemd"
+
+	If you wish to use this example in your builds:
+	- enable 'systemd' as your init system
+	- add the meta-rauc layer to your build (with the corresponding branch)
+	- add 'rauc' to your DISTRO_FEATURES
+	- enable RK_RAUC_DEMO in your config
+
+	If you wish to implement your own RAUC update without using the example from
+	this layer, perform the same steps as above except for the step enabling
+	RK_RAUC_DEMO.
+
 U-Boot Environment:
 ------------------
 	In order to configure U-Boot to be able to store its environment into the

@@ -2,6 +2,7 @@
 
 require conf/machine/include/rockchip-extlinux.inc
 require conf/machine/include/rockchip-rk-u-boot-env.inc
+require conf/machine/include/rockchip-rauc.inc
 
 SPL_BINARY ?= "idbloader.img"
 
@@ -9,6 +10,7 @@ SPL_BINARY ?= "idbloader.img"
 # WIC_COMPRESSION_EXTENSION = ".xz"
 WIC_COMPRESSION_EXTENSION ?= ""
 IMAGE_FSTYPES += "wic${WIC_COMPRESSION_EXTENSION} wic.bmap"
+IMAGE_FSTYPES:append:rk-rauc-demo = " ext4"
 WKS_FILE ?= "rockchip.wks"
 WKS_FILE_DEPENDS ?= " \
 	e2fsprogs-native \
