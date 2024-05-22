@@ -9,7 +9,7 @@
 # $UBOOT_EXTLINUX_FDTDIR/rockchip/$KERNEL_DEVICETREE but rather at
 # $UBOOT_EXTLINUX_FDTDIR/$KERNEL_DEVICETREE therefore we need to strip off
 # the 'rockchip/' part for extlinux non-fitImage builds
-NONFITDT ?= "${@d.getVar('KERNEL_DEVICETREE').split('/')[1]}"
+NONFITDT ?= "${@d.getVar('KERNEL_DEVICETREE').split()[0].split('/')[1]}"
 
 UBOOT_EXTLINUX ?= "1"
 UBOOT_EXTLINUX_ROOT ?= "root=PARTLABEL=rootfsA"
