@@ -1,4 +1,5 @@
 # meta-rockchip default settings
+MACHINEOVERRIDES =. "${@bb.utils.contains('ROCKCHIP_CLOSED_TPL', '1', 'closed-tpl:', '', d)}"
 MACHINEOVERRIDES =. "rockchip:"
 # kernel
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
