@@ -3,8 +3,8 @@ SOC_FAMILY = "rk3308"
 DEFAULTTUNE ?= "cortexa35-crypto"
 
 require conf/machine/include/soc-family.inc
-require conf/machine/include/arm/armv8a/tune-cortexa35.inc
 require conf/machine/include/rockchip-defaults.inc
+require conf/machine/include/arm/armv8a/tune-cortexa35.inc
 require conf/machine/include/rockchip-wic.inc
 
 SERIAL_CONSOLES = "1500000;ttyS0"
