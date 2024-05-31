@@ -7,21 +7,15 @@ DEPENDS:append:rk3308 = " u-boot-tools-native"
 DEPENDS:append:rock-pi-4 = " gnutls-native"
 DEPENDS:append:rk-u-boot-env = " u-boot-mkenvimage-native"
 
-EXTRA_OEMAKE:append:px30 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-px30.elf"
-EXTRA_OEMAKE:append:rk3308 = " \
-	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3308.elf \
-	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3308.bin \
-	"
-EXTRA_OEMAKE:append:rk3328 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3328.elf"
-EXTRA_OEMAKE:append:rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
-EXTRA_OEMAKE:append:rk3568 = " \
-	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3568.elf \
-	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3568.bin \
-	"
-EXTRA_OEMAKE:append:rk3588s = " \
-	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf \
-	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin \
-	"
+BL31:rockchip:aarch64 = "${DEPLOY_DIR_IMAGE}/bl31-${SOC_FAMILY}.elf"
+# SOC_FAMILY for RK3588S is rk3588s but it should use the binaries from rk3588
+BL31:rk3588s = "${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf"
+EXTRA_OEMAKE:append:rockchip:aarch64 = " BL31=${BL31}"
+
+# No open-source TPL (yet)
+EXTRA_OEMAKE:append:rk3308 = " ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3308.bin"
+EXTRA_OEMAKE:append:rk3568 = " ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3568.bin"
+EXTRA_OEMAKE:append:rk3588s = " ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin"
 
 INIT_FIRMWARE_DEPENDS ??= ""
 INIT_FIRMWARE_DEPENDS:px30 = " trusted-firmware-a:do_deploy"
