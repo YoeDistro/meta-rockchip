@@ -1,5 +1,5 @@
 # meta-rockchip default settings
-
+MACHINEOVERRIDES =. "rockchip:"
 # kernel
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
 KCONFIG_MODE ?= "alldefconfig"
