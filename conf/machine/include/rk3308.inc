@@ -2,6 +2,8 @@ SOC_FAMILY = "rk3308"
 
 DEFAULTTUNE ?= "cortexa35-crypto"
 
+ROCKCHIP_CLOSED_TPL ?= "1"
+
 require conf/machine/include/soc-family.inc
 require conf/machine/include/rockchip-defaults.inc
 require conf/machine/include/arm/armv8a/tune-cortexa35.inc
