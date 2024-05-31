@@ -2,6 +2,8 @@ SOC_FAMILY = "rk3568"
 
 DEFAULTTUNE ?= "cortexa55"
 
+ROCKCHIP_CLOSED_TPL ?= "1"
+
 require conf/machine/include/soc-family.inc
 require conf/machine/include/rockchip-defaults.inc
 require conf/machine/include/arm/armv8-2a/tune-cortexa55.inc
