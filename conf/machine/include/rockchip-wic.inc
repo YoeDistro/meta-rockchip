@@ -5,7 +5,10 @@ require conf/machine/include/rockchip-rk-u-boot-env.inc
 
 SPL_BINARY ?= "idbloader.img"
 
-IMAGE_FSTYPES += "wic wic.bmap"
+# if you use the following variable, make sure to add the '.' e.g.
+# WIC_COMPRESSION_EXTENSION = ".xz"
+WIC_COMPRESSION_EXTENSION ?= ""
+IMAGE_FSTYPES += "wic${WIC_COMPRESSION_EXTENSION} wic.bmap"
 WKS_FILE ?= "rockchip.wks"
 WKS_FILE_DEPENDS ?= " \
 	e2fsprogs-native \
