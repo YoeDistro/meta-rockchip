@@ -40,6 +40,8 @@ Status of supported boards:
 		orangepi-5-plus
 		rock-3a
 		rock-4c-plus
+		radxa-zero-3e
+		radxa-zero-3w
 	builds:
 		marsboard-rk3066
 		radxarock
