@@ -18,34 +18,39 @@ Dependencies:
 Status of supported boards:
 --------------------------
 	builds and boots wic image:
-		nanopi-m4
-		nanopi-m4-2gb
-		rock-pi-e
-		rock-pi-4a
-		rock-pi-4b
-		rock-pi-4c
-		rock64
-		tinker-board
-		tinker-board-s
-		vyasa-rk3288
-		firefly-rk3288
-		nanopi-r4s
-		rock-5b
-		nanopi-r2s
-		nanopi-m4b
-		rock-pi-s
-		rock-5a
-		roc-rk3328-cc
-		roc-rk3308-cc
-		orangepi-5-plus
-		rock-3a
-		rock-4c-plus
-		radxa-zero-3e
-		radxa-zero-3w
+		32-bit:
+			firefly-rk3288
+			tinker-board
+			tinker-board-s
+			vyasa-rk3288
+
+		64-bit:
+			nanopi-m4
+			nanopi-m4-2gb
+			nanopi-m4b
+			nanopi-r2s
+			nanopi-r4s
+			orangepi-5-plus
+			radxa-zero-3e
+			radxa-zero-3w
+			roc-rk3308-cc
+			roc-rk3328-cc
+			rock-3a
+			rock-4c-plus
+			rock-5a
+			rock-5b
+			rock-pi-4a
+			rock-pi-4b
+			rock-pi-4c
+			rock-pi-e
+			rock-pi-s
+			rock64
+
 	builds:
-		marsboard-rk3066
-		radxarock
-		rock2-square
+		32-bit:
+			marsboard-rk3066
+			radxarock
+			rock2-square
 
 Notes:
 -----
