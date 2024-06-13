@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 DEFAULT_PREFERENCE = "-1"
 COMPATIBLE_MACHINE = "^$"
-COMPATIBLE_MACHINE:radxa-zero-3e = "radxa-zero-3e"
+COMPATIBLE_MACHINE:radxa-zero-3 = "radxa-zero-3"
 
 LINUX_VERSION = "6.10-rc3"
 PV = "${LINUX_VERSION}+git${SRCPV}"

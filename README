@@ -41,6 +41,7 @@ Status of supported boards:
 		rock-3a
 		rock-4c-plus
 		radxa-zero-3e
+		radxa-zero-3w
 	builds:
 		marsboard-rk3066
 		radxarock
