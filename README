@@ -103,6 +103,28 @@ Notes:
 	this layer, perform the same steps as above except for the step enabling
 	RK_RAUC_DEMO.
 
+  HW video decoding with gstreamer
+
+	Most Rockchip SoCs have some integrated VPU, either Hantro, RKVDEC or
+	RKVDECv2. Those are called stateless VPUs and they require tools to be
+	adapted so they can be used. Upstream ffmpeg doesn't support them (yet)
+	but gstreamer does, via the v4l2sl* plugins. However, by default those
+	aren't built in OE-Core. This layer enables these plugins by default for
+	all SoCs that have at least one VPU (at the time of writing, all SoCs
+	supported by this layer to the exception of RK3308).
+
+	If you wish to NOT build those plugins anymore, you can set
+
+		ENABLE_STATELESS_VPU_GST = "0"
+
+	in any appropriate conf file (or in a
+	gstreamer1.0-plugins-bad_%.bbappend in your own layer).
+
+	Note that this is only relevant for upstream-based Linux kernels as
+	Rockchip have developed their own ABI for their own kernel that isn't
+	compatible (see Rockchip Media Process Platform (MPP) and
+	downstream gstreamer-rockchip plugin for those kernels).
+
 U-Boot Environment:
 ------------------
 	In order to configure U-Boot to be able to store its environment into the
