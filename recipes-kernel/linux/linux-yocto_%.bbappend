@@ -25,4 +25,3 @@ COMPATIBLE_MACHINE:rock-5b = "rock-5b"
 
 SRC_URI:append = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
 SRC_URI:append:nanopi-r4s = " file://nanopi-r4s.scc"
-SRC_URI:append:rk3328 = " file://0001-pinctrl-rockchip-correct-RK3328-iomux-width-flag-for.patch"
