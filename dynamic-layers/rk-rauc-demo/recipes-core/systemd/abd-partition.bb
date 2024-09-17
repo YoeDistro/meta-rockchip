@@ -24,3 +24,5 @@ do_install() {
 	install -d ${D}${sysconfdir}/systemd/system
 	install -m 0644 ${UNPACKDIR}/data.mount ${D}${sysconfdir}/systemd/system/
 }
+
+RDEPENDS:${PN} += "e2fsprogs-mke2fs"
