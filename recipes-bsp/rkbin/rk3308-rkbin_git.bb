@@ -6,7 +6,9 @@ SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
 SRCREV = "e65b97b511f1349156702db40694454c141d8fe2"
 
 PROVIDES += "trusted-firmware-a"
-PROVIDES += "rockchip-rkbin"
+PROVIDES += "rockchip-rkbin-ddr"
+PROVIDES += "rockchip-rkbin-tf-a"
+PROVIDES += "rockchip-rkbin-optee-os"
 PROVIDES += "optee-os"
 
 inherit bin_package deploy

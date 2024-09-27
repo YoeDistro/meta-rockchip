@@ -14,8 +14,8 @@ KERNEL_FEATURES:append:rk3566 = " bsp/rockchip/remove-non-rockchip-arch-arm64.sc
 KERNEL_CLASSES = "kernel-fitimage"
 KERNEL_IMAGETYPE ?= "fitImage"
 
-PREFERRED_PROVIDER_trusted-firmware-a = "rockchip-rkbin"
-PREFERRED_PROVIDER_optee-os = "rockchip-rkbin"
+PREFERRED_PROVIDER_trusted-firmware-a = "rockchip-rkbin-tf-a"
+PREFERRED_PROVIDER_optee-os = "rockchip-rkbin-optee-os"
 
 UBOOT_SUFFIX ?= "itb"
 UBOOT_ENTRYPOINT ?= "0x06000000"

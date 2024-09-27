@@ -14,5 +14,5 @@ ROCKCHIP_TPL:closed-tpl:rk3588s = "${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin"
 EXTRA_OEMAKE:append:closed-tpl = " ROCKCHIP_TPL=${ROCKCHIP_TPL}"
 
 INIT_FIRMWARE_DEPENDS ??= ""
-INIT_FIRMWARE_DEPENDS:closed-tpl = " rockchip-rkbin:do_deploy"
+INIT_FIRMWARE_DEPENDS:closed-tpl = " rockchip-rkbin-ddr:do_deploy"
 do_compile[depends] .= "${INIT_FIRMWARE_DEPENDS}"

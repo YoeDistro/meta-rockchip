@@ -19,4 +19,6 @@ KERNEL_IMAGETYPE ?= "fitImage"
 UBOOT_SUFFIX ?= "itb"
 UBOOT_ENTRYPOINT ?= "0x06000000"
 
-PREFERRED_PROVIDER_rockchip-rkbin = "${@bb.utils.contains('RKBIN_RK3308_LATEST', '1', 'rockchip-rkbin', 'rk3308-rkbin', d)}"
+PREFERRED_PROVIDER_rockchip-rkbin-ddr = "${@bb.utils.contains('RKBIN_RK3308_LATEST', '1', 'rockchip-rkbin-ddr', 'rk3308-rkbin', d)}"
+PREFERRED_PROVIDER_rockchip-rkbin-tf-a = "${@bb.utils.contains('RKBIN_RK3308_LATEST', '1', 'rockchip-rkbin-tf-a', 'rk3308-rkbin', d)}"
+PREFERRED_PROVIDER_rockchip-rkbin-optee-os = "${@bb.utils.contains('RKBIN_RK3308_LATEST', '1', 'rockchip-rkbin-optee-os', 'rk3308-rkbin', d)}"
