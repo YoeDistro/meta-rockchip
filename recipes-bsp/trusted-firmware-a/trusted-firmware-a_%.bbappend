@@ -7,6 +7,7 @@ COMPATIBLE_MACHINE:append:rk3328 = "|rk3328"
 COMPATIBLE_MACHINE:append:px30 = "|px30"
 COMPATIBLE_MACHINE:append:rk3566 = "|rk3566"
 COMPATIBLE_MACHINE:append:rk3568 = "|rk3568"
+COMPATIBLE_MACHINE:append:rk3588s = "|rk3588s"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 SRC_URI += "\
@@ -40,6 +41,10 @@ fixup_baudrate:rk3566() {
 
 fixup_baudrate:rk3568() {
 	sed -i "s/#define FPGA_BAUDRATE\s\+.*/#define FPGA_BAUDRATE ${RK_CONSOLE_BAUD}/" ${S}/plat/rockchip/rk3568/rk3568_def.h
+}
+
+fixup_baudrate:rk3588s() {
+	sed -i "s/#define RK_DBG_UART_BAUDRATE\s\+.*/#define RK_DBG_UART_BAUDRATE ${RK_CONSOLE_BAUD}/" ${S}/plat/rockchip/rk3588/rk3588_def.h
 }
 
 # Only required for U-Boot configuration for which SPL_ATF_NO_PLATFORM_PARAM
