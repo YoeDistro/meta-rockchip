@@ -5,6 +5,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=15faa4a01e7eb0f5d33f9f2bcc7bff62"
 
 inherit bin_package deploy
 
+INHIBIT_DEFAULT_DEPS = "1"
+
 S = "${WORKDIR}/git"
 
 COMPATIBLE_MACHINE = "^$"
