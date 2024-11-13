@@ -45,6 +45,7 @@ Status of supported boards:
 			rock-pi-e
 			rock-pi-s
 			rock64
+			soquartz (on model A base board)
 
 	builds:
 		32-bit:
