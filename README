@@ -55,6 +55,21 @@ Status of supported boards:
 
 Notes:
 -----
+  Custom DDR rkbin version:
+	If you wish to use a different version of DDR binary provided by
+	rockchip-rkbin-ddr recipe than the one in this layer, you can create a
+	.bbappend in your own layer, and accordingly set SRCREV (possibly
+	LIC_FILES_CHKSUM too) and the version for path matching stored in
+	DDRBIN_VERS variable. Do so in your .bbappend with:
+
+		DDRBIN_VERS:my-machine = "v2.07"
+
+	If somehow the filename differs from the one provided in this layer, you
+	can override it from your bbappend with the DDRBIN_FILE variable:
+
+		DDRBIN_VERS:my-machine = "v2.07"
+		DDRBIN_FILE:my-machine = "rk3308_ddr_451MHz_uart4_m0_${DDRBIN_VERS}.bin"
+
   rk3308 rkbin:
 	The latest ddr initializer for the rk3308 platform does not output
 	diagnostic messages to uart0. This causes a bunch of gibberish to
