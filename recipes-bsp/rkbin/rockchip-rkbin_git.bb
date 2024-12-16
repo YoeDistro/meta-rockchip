@@ -1,9 +1,9 @@
 DESCRIPTION = "Rockchip Firmware and Tool Binaries"
 LICENSE = "Proprietary"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=15faa4a01e7eb0f5d33f9f2bcc7bff62"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=11e3673115959bf596feaaa6ea7ce9a5"
 
 SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
-SRCREV = "a2a0b89b6c8c612dca5ed9ed8a68db8a07f68bc0"
+SRCREV = "7c35e21a8529b3758d1f051d1a5dc62aae934b2b"
 
 PROVIDES += "trusted-firmware-a"
 PROVIDES += "optee-os"
@@ -30,7 +30,7 @@ do_install() {
 PACKAGES = "${PN}"
 ALLOW_EMPTY:${PN} = "1"
 
-DDRBIN_VERS:rk3308 ?= "v2.07"
+DDRBIN_VERS:rk3308 ?= "v2.10"
 DDRBIN_FILE:rk3308 ?= "rk3308_ddr_589MHz_uart4_m0_${DDRBIN_VERS}.bin"
 
 do_deploy:rk3308() {
@@ -42,7 +42,7 @@ do_deploy:rk3308() {
 	install -m 644 ${S}/bin/rk33/${DDRBIN_FILE} ${DEPLOYDIR}/ddr-rk3308.bin
 }
 
-DDRBIN_VERS:rk3566 ?= "v1.21"
+DDRBIN_VERS:rk3566 ?= "v1.23"
 DDRBIN_FILE:rk3566 ?= "rk3566_ddr_1056MHz_${DDRBIN_VERS}.bin"
 
 # NOTE: the following are not typos
@@ -56,7 +56,7 @@ do_deploy:rk3566() {
 	install -m 644 ${S}/bin/rk35/${DDRBIN_FILE} ${DEPLOYDIR}/ddr-rk3566.bin
 }
 
-DDRBIN_VERS:rk3568 ?= "v1.21"
+DDRBIN_VERS:rk3568 ?= "v1.23"
 DDRBIN_FILE:rk3568 ?= "rk3568_ddr_1560MHz_${DDRBIN_VERS}.bin"
 
 do_deploy:rk3568() {
@@ -68,7 +68,7 @@ do_deploy:rk3568() {
 	install -m 644 ${S}/bin/rk35/${DDRBIN_FILE} ${DEPLOYDIR}/ddr-rk3568.bin
 }
 
-DDRBIN_VERS:rk3588s ?= "v1.16"
+DDRBIN_VERS:rk3588s ?= "v1.18"
 DDRBIN_FILE:rk3588s ?= "rk3588_ddr_lp4_2112MHz_lp5_2400MHz_${DDRBIN_VERS}.bin"
 
 do_deploy:rk3588s() {
