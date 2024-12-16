@@ -10,6 +10,8 @@ PROVIDES += "optee-os"
 
 inherit bin_package deploy
 
+INHIBIT_DEFAULT_DEPS = "1"
+
 S = "${WORKDIR}/git"
 
 COMPATIBLE_MACHINE = "^$"
