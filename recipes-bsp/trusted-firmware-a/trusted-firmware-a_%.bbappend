@@ -12,7 +12,6 @@ COMPATIBLE_MACHINE:append:rk3588s = "|rk3588s"
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 SRC_URI += "\
     file://0001-dram-Fix-build-with-gcc-11.patch \
-    file://0001-plat_macros.S-Use-compatible-.asciz-asm-directive.patch \
     file://0001-pmu-Do-not-mark-already-defined-functions-as-weak.patch \
 "
 
