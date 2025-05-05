@@ -2,48 +2,46 @@ DESCRIPTION = "Rockchip Firmware for DDR init (TPL in U-Boot terms)"
 
 require rockchip-rkbin.inc
 
-DDRBIN_DIR:rk3308 ?= "bin/rk33/"
-DDRBIN_VERS:rk3308 ?= "v2.10"
-DDRBIN_FILE:rk3308 ?= "rk3308_ddr_589MHz_uart4_m0_${DDRBIN_VERS}.bin"
-DDRBIN_DEPLOY_FILENAME:rk3308 ?= "ddr-rk3308.bin"
-DDRBIN_TOOL_SOC:rk3308 ?= "rk3308"
+RKBIN_BINDIR:rk3308 ?= "bin/rk33/"
+RKBIN_BINVERS:rk3308 ?= "v2.10"
+RKBIN_BINFILE:rk3308 ?= "rk3308_ddr_589MHz_uart4_m0_${RKBIN_BINVERS}.bin"
+RKBIN_DEPLOY_FILENAME:rk3308 ?= "ddr-rk3308.bin"
 
-do_deploy:rk3308() {
-	# Prebuilt U-Boot TPL (DDR init)
-	install -m 644 ${S}/${DDRBIN_DIR}${DDRBIN_FILE} ${DEPLOYDIR}/${DDRBIN_DEPLOY_FILENAME}
-}
+RKBIN_BINDIR:rk3566 ?= "bin/rk35/"
+RKBIN_BINVERS:rk3566 ?= "v1.23"
+RKBIN_BINFILE:rk3566 ?= "rk3566_ddr_1056MHz_${RKBIN_BINVERS}.bin"
+RKBIN_DEPLOY_FILENAME:rk3566 ?= "ddr-rk3566.bin"
 
-DDRBIN_DIR:rk3566 ?= "bin/rk35/"
-DDRBIN_VERS:rk3566 ?= "v1.23"
-DDRBIN_FILE:rk3566 ?= "rk3566_ddr_1056MHz_${DDRBIN_VERS}.bin"
-DDRBIN_DEPLOY_FILENAME:rk3566 ?= "ddr-rk3566.bin"
-DDRBIN_TOOL_SOC:rk3566 ?= "rk356x"
+RKBIN_BINDIR:rk3568 ?= "bin/rk35/"
+RKBIN_BINVERS:rk3568 ?= "v1.23"
+RKBIN_BINFILE:rk3568 ?= "rk3568_ddr_1560MHz_${RKBIN_BINVERS}.bin"
+RKBIN_DEPLOY_FILENAME:rk3568 ?= "ddr-rk3568.bin"
 
-do_deploy:rk3566() {
-	# Prebuilt U-Boot TPL (DDR init)
-	install -m 644 ${S}/${DDRBIN_DIR}${DDRBIN_FILE} ${DEPLOYDIR}/${DDRBIN_DEPLOY_FILENAME}
-}
+RKBIN_BINDIR:rk3588s ?= "bin/rk35/"
+RKBIN_BINVERS:rk3588s ?= "v1.18"
+RKBIN_BINFILE:rk3588s ?= "rk3588_ddr_lp4_2112MHz_lp5_2400MHz_${RKBIN_BINVERS}.bin"
+RKBIN_DEPLOY_FILENAME:rk3588s ?= "ddr-rk3588.bin"
 
-DDRBIN_DIR:rk3568 ?= "bin/rk35/"
-DDRBIN_VERS:rk3568 ?= "v1.23"
-DDRBIN_FILE:rk3568 ?= "rk3568_ddr_1560MHz_${DDRBIN_VERS}.bin"
-DDRBIN_DEPLOY_FILENAME:rk3568 ?= "ddr-rk3568.bin"
 DDRBIN_TOOL_SOC:rk3568 ?= "rk356x"
-
-do_deploy:rk3568() {
-	# Prebuilt U-Boot TPL (DDR init)
-	install -m 644 ${S}/${DDRBIN_DIR}${DDRBIN_FILE} ${DEPLOYDIR}/${DDRBIN_DEPLOY_FILENAME}
-}
-
-DDRBIN_DIR:rk3588s ?= "bin/rk35/"
-DDRBIN_VERS:rk3588s ?= "v1.18"
-DDRBIN_FILE:rk3588s ?= "rk3588_ddr_lp4_2112MHz_lp5_2400MHz_${DDRBIN_VERS}.bin"
-DDRBIN_DEPLOY_FILENAME:rk3588s ?= "ddr-rk3588.bin"
+DDRBIN_TOOL_SOC:rk3308 ?= "rk3308"
+DDRBIN_TOOL_SOC:rk3566 ?= "rk356x"
 DDRBIN_TOOL_SOC:rk3588s ?= "rk3588"
 
-do_deploy:rk3588s() {
+do_deploy() {
+	if [ -z "${RKBIN_BINDIR}" ]; then
+		bbfatal "Non-empty RKBIN_BINDIR:<MACHINE> required!"
+	fi
+
+	if [ -z "${RKBIN_BINFILE}" ]; then
+		bbfatal "Non-empty RKBIN_BINFILE:<MACHINE> required!"
+	fi
+
+	if [ -z "${RKBIN_DEPLOY_FILENAME}" ]; then
+		bbfatal "Non-empty RKBIN_DEPLOY_FILENAME:<MACHINE> required!"
+	fi
+
 	# Prebuilt U-Boot TPL (DDR init)
-	install -m 644 ${S}/${DDRBIN_DIR}${DDRBIN_FILE} ${DEPLOYDIR}/${DDRBIN_DEPLOY_FILENAME}
+	install -m 644 ${S}/${RKBIN_BINDIR}${RKBIN_BINFILE} ${DEPLOYDIR}/${RKBIN_DEPLOY_FILENAME}
 }
 
 # The following is only required if DDR bin blob needs to be modified
@@ -75,13 +73,13 @@ do_configure() {
 		# This is bad for reproducibility and hashequiv usage, so use the commit author
 		# date of the last change made to the DDR bin.
 		# DATE must be max 17-character long!
-		RKBIN_DDR_DATE=$(git log --pretty=format:"%ad" --date=format:"%Y%m%d-%H:%M:%S" -1 -- ${S}/${DDRBIN_DIR}${DDRBIN_FILE})
+		RKBIN_DDR_DATE=$(git log --pretty=format:"%ad" --date=format:"%Y%m%d-%H:%M:%S" -1 -- ${S}/${RKBIN_BINDIR}${RKBIN_BINFILE})
 		# DDRBIN_TOOL_SOC is mostly useless except for rk3528 for now. It needs to match one string in the global
 		# chip_list array in ddrbin_tool.py.
 		if [ -z "${DDRBIN_TOOL_SOC}" ]; then
 			bbfatal "Non-empty DDRBIN_TOOL_SOC:<MACHINE> required!"
 		fi
 		# Modify blob with appropriate settings stored in ddrbin_params.txt
-		ddrbin_tool.py ${DDRBIN_TOOL_SOC} ${UNPACKDIR}/ddrbin_param.txt ${S}/${DDRBIN_DIR}${DDRBIN_FILE} --verinfo_editable "${RKBIN_DDR_DATE}"
+		ddrbin_tool.py ${DDRBIN_TOOL_SOC} ${UNPACKDIR}/ddrbin_param.txt ${S}/${RKBIN_BINDIR}${RKBIN_BINFILE} --verinfo_editable "${RKBIN_DDR_DATE}"
 	fi
 }
