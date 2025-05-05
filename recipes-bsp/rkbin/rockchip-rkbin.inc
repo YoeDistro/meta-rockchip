@@ -1,5 +1,5 @@
 SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
-SRCREV = "7c35e21a8529b3758d1f051d1a5dc62aae934b2b"
+SRCREV = "f43a462e7a1429a9d407ae52b4745033034a6cf9"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=11e3673115959bf596feaaa6ea7ce9a5"
 

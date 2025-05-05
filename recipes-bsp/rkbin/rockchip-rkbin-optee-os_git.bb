@@ -4,11 +4,11 @@ require rockchip-rkbin.inc
 
 PROVIDES += "optee-os"
 
-RKBIN_BINVERS:rk3308 ?= "v2.08"
+RKBIN_BINVERS:rk3308 ?= "v2.09"
 RKBIN_BINFILE:rk3308 ?= "rk3308_bl32_${RKBIN_BINVERS}.bin"
 RKBIN_DEPLOY_FILENAME:rk3308 ?= "tee-rk3308.bin"
 
-RKBIN_BINVERS_RK356x ?= "v2.14"
+RKBIN_BINVERS_RK356x ?= "v2.15"
 RKBIN_BINVERS:rk3566 ?= "${RKBIN_BINVERS_RK356x}"
 # NOTE: the following are not typos
 #       the rk3566 uses the same bl32 as the rk3568
@@ -19,6 +19,6 @@ RKBIN_BINVERS:rk3568 ?= "${RKBIN_BINVERS_RK356x}"
 RKBIN_BINFILE:rk3568 ?= "rk3568_bl32_${RKBIN_BINVERS}.bin"
 RKBIN_DEPLOY_FILENAME:rk3568 ?= "tee-rk3568.bin"
 
-RKBIN_BINVERS:rk3588s ?= "v1.17"
+RKBIN_BINVERS:rk3588s ?= "v1.19"
 RKBIN_BINFILE:rk3588s ?= "rk3588_bl32_${RKBIN_BINVERS}.bin"
 RKBIN_DEPLOY_FILENAME:rk3588s ?= "tee-rk3588.bin"
