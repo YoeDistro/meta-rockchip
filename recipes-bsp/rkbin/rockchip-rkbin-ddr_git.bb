@@ -2,22 +2,18 @@ DESCRIPTION = "Rockchip Firmware for DDR init (TPL in U-Boot terms)"
 
 require rockchip-rkbin.inc
 
-RKBIN_BINDIR:rk3308 ?= "bin/rk33/"
 RKBIN_BINVERS:rk3308 ?= "v2.10"
 RKBIN_BINFILE:rk3308 ?= "rk3308_ddr_589MHz_uart4_m0_${RKBIN_BINVERS}.bin"
 RKBIN_DEPLOY_FILENAME:rk3308 ?= "ddr-rk3308.bin"
 
-RKBIN_BINDIR:rk3566 ?= "bin/rk35/"
 RKBIN_BINVERS:rk3566 ?= "v1.23"
 RKBIN_BINFILE:rk3566 ?= "rk3566_ddr_1056MHz_${RKBIN_BINVERS}.bin"
 RKBIN_DEPLOY_FILENAME:rk3566 ?= "ddr-rk3566.bin"
 
-RKBIN_BINDIR:rk3568 ?= "bin/rk35/"
 RKBIN_BINVERS:rk3568 ?= "v1.23"
 RKBIN_BINFILE:rk3568 ?= "rk3568_ddr_1560MHz_${RKBIN_BINVERS}.bin"
 RKBIN_DEPLOY_FILENAME:rk3568 ?= "ddr-rk3568.bin"
 
-RKBIN_BINDIR:rk3588s ?= "bin/rk35/"
 RKBIN_BINVERS:rk3588s ?= "v1.18"
 RKBIN_BINFILE:rk3588s ?= "rk3588_ddr_lp4_2112MHz_lp5_2400MHz_${RKBIN_BINVERS}.bin"
 RKBIN_DEPLOY_FILENAME:rk3588s ?= "ddr-rk3588.bin"
@@ -26,23 +22,6 @@ DDRBIN_TOOL_SOC:rk3568 ?= "rk356x"
 DDRBIN_TOOL_SOC:rk3308 ?= "rk3308"
 DDRBIN_TOOL_SOC:rk3566 ?= "rk356x"
 DDRBIN_TOOL_SOC:rk3588s ?= "rk3588"
-
-do_deploy() {
-	if [ -z "${RKBIN_BINDIR}" ]; then
-		bbfatal "Non-empty RKBIN_BINDIR:<MACHINE> required!"
-	fi
-
-	if [ -z "${RKBIN_BINFILE}" ]; then
-		bbfatal "Non-empty RKBIN_BINFILE:<MACHINE> required!"
-	fi
-
-	if [ -z "${RKBIN_DEPLOY_FILENAME}" ]; then
-		bbfatal "Non-empty RKBIN_DEPLOY_FILENAME:<MACHINE> required!"
-	fi
-
-	# Prebuilt U-Boot TPL (DDR init)
-	install -m 644 ${S}/${RKBIN_BINDIR}${RKBIN_BINFILE} ${DEPLOYDIR}/${RKBIN_DEPLOY_FILENAME}
-}
 
 # The following is only required if DDR bin blob needs to be modified
 # (e.g. different UART controller, UART mux, or baudrate)
