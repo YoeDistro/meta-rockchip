@@ -55,7 +55,7 @@ Status of supported boards:
 
 Notes:
 -----
-  Custom DDR rkbin version:
+  Customize DDR rkbin:
 	If you wish to use a different version of DDR binary provided by
 	rockchip-rkbin-ddr recipe than the one in this layer, you can create a
 	.bbappend in your own layer, and accordingly set SRCREV (possibly
@@ -69,6 +69,24 @@ Notes:
 
 		DDRBIN_VERS:my-machine = "v2.07"
 		DDRBIN_FILE:my-machine = "rk3308_ddr_451MHz_uart4_m0_${DDRBIN_VERS}.bin"
+
+	If you wish to use a configuration for the DDR binary blob provided in
+	rockchip-rkbin-ddr recipe that differs from the default, you can set the
+	RKBIN_DDR_RECONFIGURE variable to 1 for your machine, e.g.:
+
+		RKBIN_DDR_RECONFIGURE:my-machine = "1"
+
+	You will need to provide your custom ddrbin_param.txt via your bbappend, e.g.
+	your ddrbin_param in
+	meta-my-layer/recipes-bsp/rkbin/rockchip-rkbin-ddr/my-machine/ddrbin_param.txt
+	and a bbappend, e.g. in meta-my-layer/recipes-bsp/rkbin/rockchip-rkbin-ddr_git.bbappend,
+	which contains:
+
+		FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+
+	As for the content of ddrbin_param.txt,
+	https://github.com/rockchip-linux/rkbin/blob/master/tools/ddrbin_tool_user_guide.txt
+	may help.
 
   rk3308 rkbin:
 	The latest ddr initializer for the rk3308 platform does not output
