@@ -1,6 +1,6 @@
 inherit rk-rauc-demo-features-check
 
-PACKAGE_ARCH = "${MACHINE_ARCH}"
+PACKAGE_ARCH:rk-rauc-demo = "${MACHINE_ARCH}"
 
 FILESEXTRAPATHS:prepend:rk-rauc-demo := "${THISDIR}/files:"
 
