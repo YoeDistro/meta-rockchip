@@ -1,0 +1,5 @@
+KERNEL_CLASSES += "kernel-fit-extra-artifacts"
+KERNEL_IMAGETYPE ?= "Image"
+RRECOMMENDS:${KERNEL_PACKAGE_NAME}-base = ""
+KERNEL_DEPLOY_DEPEND ?= "linux-yocto-fitimage:do_deploy"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS_KERNEL = "linux-yocto-fitimage"

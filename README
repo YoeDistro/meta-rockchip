@@ -159,6 +159,16 @@ Notes:
 	compatible (see Rockchip Media Process Platform (MPP) and
 	downstream gstreamer-rockchip plugin for those kernels).
 
+  RK_KERNEL_FITIMAGE
+
+	When generating an image, the BSP code needs to know whether or not to
+	package the kernel pieces as a fitImage or not. By default it is assumed
+	most MACHINEs will use the fitImage format. Otherwise disable the
+	RK_KERNEL_FITIMAGE variable boolean to indicate otherwise.
+
+	NOTE: this variable must be set before any include/require in the
+	      machine configuration file
+
 U-Boot Environment:
 ------------------
 	In order to configure U-Boot to be able to store its environment into the

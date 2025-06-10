@@ -1,9 +1,16 @@
 # meta-rockchip default settings
 MACHINEOVERRIDES =. "${@bb.utils.contains('ROCKCHIP_CLOSED_TPL', '1', 'closed-tpl:', '', d)}"
 MACHINEOVERRIDES =. "rockchip:"
+
 # kernel
+# RK_KERNEL_FITIMAGE needs to be set before the next "require ..."
+RK_KERNEL_FITIMAGE ?= "True"
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
 KCONFIG_MODE ?= "alldefconfig"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS_KERNEL = "kernel-devicetree"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "${MACHINE_ESSENTIAL_EXTRA_RDEPENDS_KERNEL}"
+require ${@ 'conf/machine/include/rockchip-fitimage.inc' if bb.utils.to_boolean(d.getVar('RK_KERNEL_FITIMAGE')) else ''}
+KERNEL_IMAGETYPE ?= "zImage"
 
 # xserver
 XSERVER = " \
