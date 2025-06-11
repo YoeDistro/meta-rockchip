@@ -9,13 +9,6 @@ COMPATIBLE_MACHINE:append:rk3566 = "|rk3566"
 COMPATIBLE_MACHINE:append:rk3568 = "|rk3568"
 COMPATIBLE_MACHINE:append:rk3588s = "|rk3588s"
 
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI += "\
-    file://0001-dram-Fix-build-with-gcc-11.patch \
-    file://0001-pmu-Do-not-mark-already-defined-functions-as-weak.patch \
-"
-
-
 # code bloats with clang and results in error below now
 # | aarch64-yoe-linux-musl-ld: region `PMUSRAM' overflowed by 3928 bytes
 # this needs fixing until then use gcc
