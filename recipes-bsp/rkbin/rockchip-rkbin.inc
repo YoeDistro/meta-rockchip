@@ -7,8 +7,6 @@ inherit bin_package deploy
 
 INHIBIT_DEFAULT_DEPS = "1"
 
-S = "${WORKDIR}/git"
-
 COMPATIBLE_MACHINE = "^$"
 COMPATIBLE_MACHINE:rk3308 = "rk3308"
 COMPATIBLE_MACHINE:rk3566 = "rk3566"

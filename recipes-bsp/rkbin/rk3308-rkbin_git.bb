@@ -13,8 +13,6 @@ PROVIDES += "optee-os"
 
 inherit bin_package deploy
 
-S = "${WORKDIR}/git"
-
 COMPATIBLE_MACHINE = "^$"
 COMPATIBLE_MACHINE:rk3308 = "rk3308"
 
