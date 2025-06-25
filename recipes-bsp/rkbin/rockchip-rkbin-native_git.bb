@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://../LICENSE;md5=11e3673115959bf596feaaa6ea7ce9a5"
 
 inherit native
 
-S = "${WORKDIR}/git/tools"
+S = "${UNPACKDIR}/${BP}/tools"
 
 # ddrbin_tool.py only uses python and core modules.
 # Yocto depends on a host python anyway so we can simply ignore that dependency
