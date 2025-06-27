@@ -9,3 +9,6 @@ MALI_DRIVER:rk3308 = ""
 
 PACKAGECONFIG:append:rockchip = " ${@bb.utils.filter('MALI_DRIVER', 'lima panfrost', d)}"
 PACKAGECONFIG:append:rockchip = "${@bb.utils.contains('MALI_DRIVER', 'panfrost', ' libclc', '', d)}"
+
+# Mali Gen10 (Valhall, supported by Panthor) requires a firmware blob
+RRECOMMENDS:mesa-megadriver:append:rk3588s = " linux-firmware-mali-csffw-arch108"
