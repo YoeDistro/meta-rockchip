@@ -1,4 +1,5 @@
 PACKAGECONFIG:append:rk3066 = " lima"
+PACKAGECONFIG:append:rk3188 = " lima"
 PACKAGECONFIG:append:rk3288 = " libclc panfrost"
 PACKAGECONFIG:append:rk3328 = " lima"
 PACKAGECONFIG:append:rk3399 = " libclc panfrost"
