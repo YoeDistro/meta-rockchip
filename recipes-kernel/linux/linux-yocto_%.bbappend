@@ -10,6 +10,7 @@ COMPATIBLE_MACHINE:tinker-board-s = "tinker-board-s"
 COMPATIBLE_MACHINE:vyasa-rk3288 = "vyasa-rk3288"
 
 # 64-bit devices
+COMPATIBLE_MACHINE:nanopc-t6 = "nanopc-t6"
 COMPATIBLE_MACHINE:nanopi-m4 = "nanopi-m4"
 COMPATIBLE_MACHINE:nanopi-m4-2gb = "nanopi-m4-2gb"
 COMPATIBLE_MACHINE:nanopi-m4b = "nanopi-m4b"
