@@ -22,7 +22,6 @@ XSERVER = " \
 	xserver-xorg-module-exa \
 	xf86-video-modesetting \
 	xf86-input-evdev \
-	xf86-input-mouse \
 	"
 
 # misc
