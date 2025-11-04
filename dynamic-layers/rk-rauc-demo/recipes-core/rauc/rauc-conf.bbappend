@@ -5,5 +5,5 @@ PACKAGE_ARCH:rk-rauc-demo = "${MACHINE_ARCH}"
 FILESEXTRAPATHS:prepend:rk-rauc-demo := "${THISDIR}/files:"
 
 do_install:prepend:rk-rauc-demo() {
-	sed -ie 's!@MACHINE@!${MACHINE}!g' ${UNPACKDIR}/system.conf
+	sed -i -e 's!@MACHINE@!${MACHINE}!g' ${UNPACKDIR}/system.conf
 }
