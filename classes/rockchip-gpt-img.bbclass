@@ -137,13 +137,13 @@ EOF
 generate_rk3288_loader1_image () {
 
 	dd if=${DEPLOY_DIR_IMAGE}/idbloader.img-${MACHINE} of=${GPTIMG} conv=notrunc,fsync seek=64
-	dd if=${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin of=${GPTIMG} conv=notrunc,fsync seek=16384
+	dd if=${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.img of=${GPTIMG} conv=notrunc,fsync seek=16384
 
 }
 
 generate_rock2_loader1_image () {
 	# Burn bootloader
 	mkimage -n rk3288 -T rksd -d ${DEPLOY_DIR_IMAGE}/${SPL_BINARY} ${WORKDIR}/${UBOOT}
-	cat ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin >>  ${WORKDIR}/${UBOOT}
+	cat ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.img >>  ${WORKDIR}/${UBOOT}
 	dd if=${WORKDIR}/${UBOOT} of=${GPTIMG} conv=notrunc,fsync seek=64
 }
