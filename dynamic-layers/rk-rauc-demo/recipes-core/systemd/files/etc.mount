@@ -1,0 +1,12 @@
+[Unit]
+Description=OverlayFS mount for /etc to /data/overlay/etc
+RequiresMountsFor=/data
+
+[Mount]
+What=overlay
+Where=/etc
+Type=overlay
+Options=lowerdir=/etc,upperdir=/data/overlay/etc,workdir=/data/overlay-workdir/etc
+
+[Install]
+WantedBy=multi-user.target

@@ -140,6 +140,56 @@ Notes:
 	this layer, perform the same steps as above except for the step enabling
 	RK_RAUC_DEMO.
 
+  /data overlay with RAUC
+	When using RAUC for whole-partition rootfs updates, you will need some
+	way of preserving some pieces of data between updates; this is why the
+	DEMO scheme provided in this layer also includes a /data partition.
+	Now that you have a /data partition that is not updated, you need some
+	way of storing your important data there and making it available,
+	seamlessly, into your system regardless of which slot is running.
+
+	One way of accomplishing this is to move your important files into
+	/data and providing symlinks back into each running bundle. But that
+	requires you to know ahead of time which files will be touched... which
+	quickly can become a game of whack-a-mole. A better alternative is to
+	use a filesystem overlay. With a filesystem overlay, multiple paths are
+	overlaid on top of each other behind the scenes so what you see is one
+	directory containing the aggregation of all layers. Filesystem overlays
+	have a concept of "bottom layers" and "upper layers", if you write a new
+	file into an overlay, the file will be written into the uppermost
+	layer, leaving the lower layers intact. If a file is modified, the
+	modifications are stored in the upper layer, occluding the lower layer.
+	Therefore, creating an overlay using locations in the /data partition
+	as the uppermost layer allows changes to persist across RAUC updates.
+
+	This layer includes a simple overlay scheme to demonstrate one way of
+	making use of this mechanism. To enable the demo included in this layer
+	RAUC must be enabled, then also enable:
+
+		RK_OVERLAY_DEMO
+
+	This demo includes overlays for both the /etc and /home directories.
+	With these overlays in place, you can change a user's password, or add
+	new users, and those changes will be available in subsequent updates.
+	By default bitbake places the root user's home directory in /home/root,
+	but systemd moves this to /root. The location of the root user's home
+	directory is stored in the
+
+		ROOT_HOME
+
+	variable. If you would like to use the overlay example provided in this
+	layer and also overlay the root user's home directory, simply define
+	this variable in your build to place the root user's home directory
+	under /home.
+
+	This feature requires overlay support to be enabled in the Linux
+	kernel. Specifically the following kernel config option must be either
+	=m or =y. By default this layer will use the in-kernel defconfig as a
+	base, which includes this option as a module, and kernel modules are
+	installed by default.
+
+		CONFIG_OVERLAY_FS
+
   HW video decoding with gstreamer
 
 	Most Rockchip SoCs have some integrated VPU, either Hantro, RKVDEC or

@@ -1,0 +1,12 @@
+[Unit]
+Description=OverlayFS mount for /home to /data/overlay/home
+RequiresMountsFor=/data
+
+[Mount]
+What=overlay
+Where=/home
+Type=overlay
+Options=lowerdir=/home,upperdir=/data/overlay/home,workdir=/data/overlay-workdir/home
+
+[Install]
+WantedBy=multi-user.target
