@@ -21,8 +21,8 @@ do_install() {
 	install -m 0644 ${UNPACKDIR}/35-rootfsB.conf ${D}${sysconfdir}/repart.d/
 	install -m 0644 ${UNPACKDIR}/45-data.conf ${D}${sysconfdir}/repart.d/
 
-	install -d ${D}${sysconfdir}/systemd/system
-	install -m 0644 ${UNPACKDIR}/data.mount ${D}${sysconfdir}/systemd/system/
+	install -d ${D}${systemd_system_unitdir}
+	install -m 0644 ${UNPACKDIR}/data.mount ${D}${systemd_system_unitdir}
 }
 
 RDEPENDS:${PN} += "e2fsprogs-mke2fs"
