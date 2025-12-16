@@ -1,4 +1,4 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/linux-rockchip:"
 
 # 32-bit devices
 COMPATIBLE_MACHINE:firefly-rk3288 = "firefly-rk3288"
