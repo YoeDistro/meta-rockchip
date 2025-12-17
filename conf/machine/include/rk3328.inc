@@ -11,7 +11,6 @@ require conf/machine/include/arm/armv8a/tune-cortexa53.inc
 require conf/machine/include/rockchip-wic.inc
 
 KBUILD_DEFCONFIG ?= "defconfig"
-KERNEL_FEATURES:append:rk3328 = " bsp/rockchip/remove-non-rockchip-arch-arm64.scc"
 
 TFA_PLATFORM = "rk3328"
 TFA_BUILD_TARGET = "bl31"
