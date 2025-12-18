@@ -251,8 +251,8 @@ Maintenance:
 	When sending patches, please make sure the email subject line includes
 	"[meta-rockchip][PATCH]" and follow the community's patch submission
 	guidelines, as described in:
-		https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
-		https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
+		https://docs.yoctoproject.org/dev/contributor-guide/recipe-style-guide.html#patch-upstream-status
+		https://docs.yoctoproject.org/dev/contributor-guide/submit-changes.html
 
 	This can be configured within the repository with the following commands:
 
