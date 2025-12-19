@@ -47,3 +47,14 @@ fixup_baudrate:rk3588s() {
 # If you use upstream U-Boot with SPL_ATF_NO_PLATFORM_PARAM disabled, you can
 # simply override this function to do nothing.
 do_patch[postfuncs] += "fixup_baudrate"
+
+do_deploy() {
+    :
+}
+do_deploy:rk3328() {
+    cp -rf ${D}/firmware/trusted-firmware-a/bl31.elf ${DEPLOYDIR}/bl31-rk3328.elf
+}
+do_deploy:rk3399() {
+    cp -rf ${D}/firmware/trusted-firmware-a/bl31.elf ${DEPLOYDIR}/bl31-rk3399.elf
+}
+addtask deploy after do_install
