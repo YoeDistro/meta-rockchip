@@ -1,6 +1,4 @@
-BL31:rockchip:aarch64 = "${DEPLOY_DIR_IMAGE}/bl31-${SOC_FAMILY}.elf"
-# SOC_FAMILY for RK3588S is rk3588s but it should use the binaries from rk3588
-BL31:rk3588s = "${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf"
+BL31:rockchip:aarch64 = "${DEPLOY_DIR_IMAGE}/trusted-firmware-a/bl31.elf"
 EXTRA_OEMAKE:append:rockchip:aarch64 = " BL31=${BL31}"
 
 TFA_DEPENDS ??= ""

@@ -28,7 +28,7 @@ ALLOW_EMPTY:${PN} = "1"
 
 do_deploy:rk3308() {
 	# Prebuilt TF-A
-	install -m 644 ${S}/bin/rk33/rk3308_bl31_v*.elf ${DEPLOYDIR}/bl31-rk3308.elf
+	install -D -m 644 ${S}/bin/rk33/rk3308_bl31_v*.elf ${DEPLOYDIR}/trusted-firmware-a/bl31.elf
 	# Prebuilt OPTEE-OS
 	install -m 644 ${S}/bin/rk33/rk3308_bl32_v*.bin ${DEPLOYDIR}/tee-rk3308.bin
 	# Prebuilt U-Boot TPL (DDR init)

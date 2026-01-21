@@ -41,7 +41,7 @@ do_deploy() {
 		bbfatal "Non-empty RKBIN_DEPLOY_FILENAME:<MACHINE> required!"
 	fi
 
-	install -m 644 ${S}/${RKBIN_BINDIR}${RKBIN_BINFILE} ${DEPLOYDIR}/${RKBIN_DEPLOY_FILENAME}
+	install -D -m 644 ${S}/${RKBIN_BINDIR}${RKBIN_BINFILE} ${DEPLOYDIR}/${RKBIN_DEPLOY_FILENAME}
 }
 
 addtask deploy after do_install
