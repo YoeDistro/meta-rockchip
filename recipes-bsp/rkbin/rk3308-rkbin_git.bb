@@ -1,6 +1,7 @@
 DESCRIPTION = "Rockchip Firmware and Tool Binaries"
-LICENSE = "CLOSED"
+LICENSE = "LicenseRef-rk3308-rkbin-CLOSED"
 LIC_FILES_CHKSUM:rk3308 = "file://README;md5=39cc9df955478b8df26158d489fdcc95"
+NO_GENERIC_LICENSE[rk3308-rkbin-CLOSED] = "README"
 
 SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
 SRCREV = "e65b97b511f1349156702db40694454c141d8fe2"
