@@ -1,7 +1,8 @@
 SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
 SRCREV = "f43a462e7a1429a9d407ae52b4745033034a6cf9"
-LICENSE = "Proprietary"
+LICENSE = "LicenseRef-Rockchip-rkbin"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=11e3673115959bf596feaaa6ea7ce9a5"
+NO_GENERIC_LICENSE[Rockchip-rkbin] = "LICENSE"
 
 inherit bin_package deploy
 
